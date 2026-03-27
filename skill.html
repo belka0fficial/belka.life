@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" id="meta-description" content="Belka — skill profile" />
+    <meta property="og:title" id="og-title" content="BELKA — SKILL" />
+    <meta property="og:description" id="og-description" content="Belka — skill profile" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://belka.life/belka.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" id="tw-title" content="BELKA — SKILL" />
+    <meta name="twitter:description" id="tw-description" content="Belka — skill profile" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>BELKA — SKILL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="skill.css" />
+  </head>
+  <body class="skill-page">
+
+    <!-- TOP NAV -->
+    <nav class="sk-nav" role="navigation">
+      <a href="index.html" class="sk-nav-back">← BELKA</a>
+      <span class="sk-nav-domain" id="sk-nav-domain"></span>
+      <a class="sk-nav-ext" id="sk-nav-ext" target="_blank" rel="noopener noreferrer"></a>
+    </nav>
+
+    <!-- HERO -->
+    <header class="sk-hero" id="sk-hero">
+      <div class="sk-hero-inner">
+
+        <div class="sk-hero-left">
+          <span class="sk-hero-eyebrow">BELKA.LIFE — SKILL PROFILE</span>
+          <div class="sk-hero-icon" id="sk-hero-icon" aria-hidden="true"></div>
+          <h1 class="sk-hero-name" id="sk-hero-name"></h1>
+          <p class="sk-hero-subtitle" id="sk-hero-subtitle"></p>
+          <div class="sk-hero-badges">
+            <span class="sk-status-badge" id="sk-status-badge"></span>
+            <span class="sk-since" id="sk-since"></span>
+          </div>
+        </div>
+
+        <div class="sk-hero-right">
+          <div class="sk-quick-stats" id="sk-quick-stats" role="list"></div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="sk-main">
+
+      <!-- Overview -->
+      <section class="sk-section sk-section--full" id="sec-overview">
+        <h2 class="sk-section-title">OVERVIEW</h2>
+        <p class="sk-description" id="sk-description"></p>
+      </section>
+
+      <!-- Two-column row: Live data + Metrics -->
+      <div class="sk-row" id="row-live-metrics">
+
+        <section class="sk-section sk-section--live" id="sec-live" hidden>
+          <h2 class="sk-section-title" id="sk-live-title">LIVE DATA</h2>
+          <div id="sk-live-container" class="sk-live-loading">FETCHING LIVE DATA…</div>
+        </section>
+
+        <section class="sk-section" id="sec-metrics">
+          <h2 class="sk-section-title">METRICS</h2>
+          <div class="sk-metrics-grid" id="sk-metrics"></div>
+        </section>
+
+      </div>
+
+      <!-- Rating / Progress chart -->
+      <section class="sk-section sk-section--full" id="sec-chart" hidden>
+        <h2 class="sk-section-title" id="sk-chart-title">RATING PROGRESSION</h2>
+        <div class="sk-chart" id="sk-chart"></div>
+      </section>
+
+      <!-- Achievement log — full width -->
+      <section class="sk-section sk-section--full" id="sec-achievements">
+        <h2 class="sk-section-title">ACHIEVEMENT LOG</h2>
+        <ul class="sk-achievement-list" id="sk-achievements" role="list"></ul>
+      </section>
+
+      <!-- Two-column row: Sessions + Timeline -->
+      <div class="sk-row sk-row--equal">
+
+        <section class="sk-section" id="sec-sessions">
+          <h2 class="sk-section-title">RECENT SESSIONS</h2>
+          <ul class="sk-session-list" id="sk-sessions" role="list"></ul>
+        </section>
+
+        <section class="sk-section" id="sec-timeline">
+          <h2 class="sk-section-title">PROGRESS TIMELINE</h2>
+          <ul class="sk-timeline-list" id="sk-timeline" role="list"></ul>
+        </section>
+
+      </div>
+
+      <!-- Social posts — full width -->
+      <section class="sk-section sk-section--full" id="sec-social">
+        <h2 class="sk-section-title">INSTAGRAM</h2>
+        <div class="sk-social-grid" id="sk-social"></div>
+        <a class="sk-social-more" id="sk-social-more" href="https://instagram.com/belka0fficial" target="_blank" rel="noopener noreferrer">
+          VIEW ALL ON INSTAGRAM ↗
+        </a>
+      </section>
+
+      <!-- Proof links — full width -->
+      <section class="sk-section sk-section--full" id="sec-links">
+        <h2 class="sk-section-title">PROOF &amp; EXTERNAL</h2>
+        <div class="sk-proof-links" id="sk-proof-links"></div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="sk-footer" role="contentinfo">
+      <div class="sk-footer-inner">
+        <a href="index.html" class="sk-footer-back">← BACK TO BELKA.LIFE</a>
+        <div class="sk-footer-brand">
+          <span class="sk-footer-name">BELKA</span>
+          <span class="sk-footer-sep" aria-hidden="true">·</span>
+          <span class="sk-footer-domain">belka.life</span>
+        </div>
+        <p class="sk-footer-copy">Proof over claims.</p>
+      </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="skill.js"></script>
+  </body>
+</html>

@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Belka — proof hub for multi-domain competence. Polymath in progress."
+    />
+    <meta property="og:title" content="BELKA" />
+    <meta
+      property="og:description"
+      content="Polymath in progress. Proof over claims."
+    />
+    <meta property="og:url" content="https://belka.life" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://belka.life/belka.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BELKA" />
+    <meta name="twitter:description" content="Polymath in progress. Proof over claims." />
+    <meta name="twitter:image" content="https://belka.life/belka.png" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>BELKA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav id="nav" role="navigation" aria-label="Primary navigation">
+      <a href="#hero" class="nav-brand">BELKA</a>
+      <button
+        class="nav-hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="nav-links"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul id="nav-links" class="nav-links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#feed">Feed</a></li>
+        <li><a href="#domains">Domains</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#links">Links</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero" aria-label="Introduction">
+      <div class="hero-graph" id="hero-graph">
+        <!-- SVG lines — drawn by JS -->
+        <svg id="graph-svg" class="graph-svg" aria-hidden="true"></svg>
+
+        <!-- Canvas — panned/zoomed in map mode -->
+        <div class="graph-canvas" id="graph-canvas">
+
+        <!-- Central portrait -->
+        <div class="graph-portrait" id="graph-portrait" role="button" tabindex="0" aria-label="Enter map mode">
+          <!-- Replace .portrait-img with <img src="belka.jpg" alt="Alexey Belkin"> when photo is ready -->
+          <div class="portrait-img"><img src="belka.png" alt="Belka"></div>
+        </div>
+
+        <!-- Domain nodes — positions set by JS on load -->
+        <button class="graph-node" data-domain-id="gym"       aria-label="Open Gym domain"><span class="node-icon">💪</span><span class="node-label">GYM</span></button>
+        <button class="graph-node" data-domain-id="chess"     aria-label="Open Chess domain"><span class="node-icon">♟</span><span class="node-label">CHESS</span></button>
+        <button class="graph-node" data-domain-id="cs"        aria-label="Open CS domain"><span class="node-icon">⌨</span><span class="node-label">CS / CODING</span></button>
+        <button class="graph-node" data-domain-id="piano"     aria-label="Open Piano domain"><span class="node-icon">🎹</span><span class="node-label">PIANO</span></button>
+        <button class="graph-node" data-domain-id="judo"      aria-label="Open Judo domain"><span class="node-icon">🥋</span><span class="node-label">JUDO</span></button>
+        <button class="graph-node" data-domain-id="math"      aria-label="Open Math domain"><span class="node-icon">📐</span><span class="node-label">MATH</span></button>
+        <button class="graph-node" data-domain-id="running"   aria-label="Open Running domain"><span class="node-icon">🏃</span><span class="node-label">RUNNING</span></button>
+        <button class="graph-node" data-domain-id="reading"   aria-label="Open Reading domain"><span class="node-icon">📚</span><span class="node-label">READING</span></button>
+        <button class="graph-node" data-domain-id="languages" aria-label="Open Languages domain"><span class="node-icon">🗣</span><span class="node-label">LANGUAGES</span></button>
+        <button class="graph-node" data-domain-id="physics"   aria-label="Open Physics domain"><span class="node-icon">⚛</span><span class="node-label">PHYSICS</span></button>
+        <button class="graph-node" data-domain-id="drawing"   aria-label="Open Drawing domain"><span class="node-icon">🎨</span><span class="node-label">DRAWING</span></button>
+        <button class="graph-node" data-domain-id="meditation" aria-label="Open Meditation domain"><span class="node-icon">🧘</span><span class="node-label">MEDITATION</span></button>
+        <button class="graph-node" data-domain-id="nutrition" aria-label="Open Nutrition domain"><span class="node-icon">🥗</span><span class="node-label">NUTRITION</span></button>
+        <button class="graph-node" data-domain-id="swimming"  aria-label="Open Swimming domain"><span class="node-icon">🏊</span><span class="node-label">SWIMMING</span></button>
+        <button class="graph-node" data-domain-id="writing"   aria-label="Open Writing domain"><span class="node-icon">✍</span><span class="node-label">WRITING</span></button>
+        <button class="graph-node" data-domain-id="finance"   aria-label="Open Finance domain"><span class="node-icon">📊</span><span class="node-label">FINANCE</span></button>
+        <button class="graph-node" data-domain-id="climbing"  aria-label="Open Climbing domain"><span class="node-icon">🧗</span><span class="node-label">CLIMBING</span></button>
+        <button class="graph-node" data-domain-id="guitar"    aria-label="Open Guitar domain"><span class="node-icon">🎸</span><span class="node-label">GUITAR</span></button>
+        <button class="graph-node" data-domain-id="sleep"     aria-label="Open Sleep domain"><span class="node-icon">😴</span><span class="node-label">SLEEP</span></button>
+        <button class="graph-node" data-domain-id="cold"      aria-label="Open Cold Exposure domain"><span class="node-icon">🧊</span><span class="node-label">COLD</span></button>
+        <button class="graph-node" data-domain-id="cycling"   aria-label="Open Cycling domain"><span class="node-icon">🚴</span><span class="node-label">CYCLING</span></button>
+        <button class="graph-node" data-domain-id="cooking"   aria-label="Open Cooking domain"><span class="node-icon">🍳</span><span class="node-label">COOKING</span></button>
+
+        </div><!-- /graph-canvas -->
+
+        <!-- Text overlay -->
+        <div class="hero-text">
+          <p class="hero-label">BELKA.LIFE</p>
+          <h1 class="hero-headline">BELKA</h1>
+          <p class="hero-sub">Polymath in progress.<br />Proof over claims.</p>
+          <a href="#feed" class="hero-cta"
+            >EXPLORE <span aria-hidden="true">↓</span></a
+          >
+        </div>
+
+        <!-- MAP MODE CONTROLS -->
+        <button class="map-mode-btn" id="map-mode-btn" aria-label="Expand skill map">
+          <span aria-hidden="true">⊞</span>
+          <span class="map-btn-label">EXPAND MAP</span>
+        </button>
+        <div class="map-exit-bar" id="map-exit-bar" aria-hidden="true">
+          <button class="map-exit-btn" id="map-exit-btn" aria-label="Exit map mode">← EXIT MAP</button>
+          <span class="map-hint">CLICK A NODE TO EXPLORE · ESC TO EXIT</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-label="About Belka">
+      <div class="section-inner">
+        <header class="section-header">
+          <h2 class="section-title">ABOUT</h2>
+          <p class="section-sub">identity · profile · goals</p>
+        </header>
+        <div class="about-layout">
+          <div class="about-primary">
+            <div class="about-profile-row">
+              <img src="belka.png" alt="Alexey Belkin" class="about-photo" />
+              <div>
+                <div class="about-name-block">
+                  <span class="about-handle">BELKA</span>
+                  <span class="about-sep" aria-hidden="true">·</span>
+                  <span class="about-real-name">Alexey Belkin</span>
+                </div>
+                <ul class="about-meta-row" role="list">
+                  <li class="about-meta-item">
+                    <span class="about-meta-key">AGE</span>
+                    <span class="about-meta-val">15</span>
+                  </li>
+                  <li class="about-meta-item">
+                    <span class="about-meta-key">LOCATION</span>
+                    <span class="about-meta-val">Israel</span>
+                  </li>
+                  <li class="about-meta-item">
+                    <span class="about-meta-key">STATUS</span>
+                    <span class="about-meta-val">Student · 10th grade</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <p class="about-tagline">Building competence across multiple domains.<br>Proof over claims.</p>
+            <p class="about-bio" id="about-bio"></p>
+            <div class="about-stack-row">
+              <span class="about-stack-label">STACK</span>
+              <div class="about-stack-tags" id="about-stack-tags"></div>
+            </div>
+          </div>
+          <div class="about-secondary">
+            <div class="about-block reveal-on-scroll">
+              <h3 class="about-block-title">PHYSICAL</h3>
+              <div class="about-stats-grid" id="about-physical"></div>
+            </div>
+            <div class="about-block reveal-on-scroll">
+              <h3 class="about-block-title">STRENGTH</h3>
+              <div class="about-stats-grid" id="about-strength"></div>
+            </div>
+            <div class="about-block reveal-on-scroll">
+              <h3 class="about-block-title">CURRENT GOALS</h3>
+              <ul class="about-goals" id="about-goals"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEED -->
+    <section id="feed" aria-label="Activity feed">
+      <div class="section-inner">
+        <header class="section-header">
+          <h2 class="section-title">FEED</h2>
+          <p class="section-sub">progress · milestones · updates</p>
+        </header>
+
+        <div class="feed-filters" role="group" aria-label="Filter feed by type">
+          <button class="filter-btn active" data-filter="all">ALL</button>
+          <button class="filter-btn" data-filter="achievement">ACHIEVEMENT</button>
+          <button class="filter-btn" data-filter="milestone">MILESTONE</button>
+          <button class="filter-btn" data-filter="update">UPDATE</button>
+          <button class="filter-btn" data-filter="announcement">ANNOUNCEMENT</button>
+        </div>
+
+        <div
+          id="feed-list"
+          class="feed-list"
+          role="feed"
+          aria-live="polite"
+          aria-label="Activity feed"
+        ></div>
+
+        <div class="feed-actions">
+          <button id="feed-load-more" class="btn-secondary">LOAD MORE</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOMAINS -->
+    <section id="domains" aria-label="Competence domains">
+      <div class="section-inner">
+        <header class="section-header">
+          <h2 class="section-title">DOMAINS</h2>
+          <p class="section-sub">core competencies · active development</p>
+        </header>
+
+        <div class="domains-grid" role="list"></div>
+
+        <div class="secondary-domains">
+          <button class="btn-ghost secondary-toggle" aria-expanded="false">
+            + SECONDARY DOMAINS
+          </button>
+          <div class="secondary-grid" hidden role="list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-label="Current projects">
+      <div class="section-inner">
+        <header class="section-header">
+          <h2 class="section-title">PROJECTS</h2>
+          <p class="section-sub">building · shipping · in progress</p>
+        </header>
+        <div class="projects-grid" id="projects-grid" role="list"></div>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section id="links" aria-label="Links and social platforms">
+      <div class="section-inner">
+        <header class="section-header">
+          <h2 class="section-title">LINKS</h2>
+          <p class="section-sub">socials · platforms · find me everywhere</p>
+        </header>
+
+        <div class="ecosystem-grid" role="list"></div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer" role="contentinfo">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-name">BELKA</span>
+          <span class="footer-dot" aria-hidden="true">·</span>
+          <span class="footer-domain">belka.life</span>
+        </div>
+        <p class="footer-tagline">Proof over claims.</p>
+        <p class="footer-copy">
+          <time id="footer-year"></time> — Built by Belka
+        </p>
+      </div>
+    </footer>
+
+    <!-- DOMAIN MODAL -->
+    <div
+      id="modal-overlay"
+      class="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-domain-title"
+      aria-hidden="true"
+    >
+      <div class="modal-container">
+        <div class="modal-header">
+          <span
+            id="modal-domain-icon"
+            class="modal-domain-icon"
+            aria-hidden="true"
+          ></span>
+          <h2 id="modal-domain-title" class="modal-domain-title"></h2>
+          <button class="modal-close" aria-label="Close domain view">✕</button>
+        </div>
+        <div id="modal-body" class="modal-body"></div>
+      </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

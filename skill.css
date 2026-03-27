@@ -1,0 +1,1026 @@
+/* ============================================================
+   SKILL PAGE — full-screen domain profile
+   Inherits CSS variables from style.css (loaded before this file)
+   --skill-accent is set inline by skill.js per domain
+   ============================================================ */
+
+/* ============================================================
+   RESET OVERRIDES FOR SKILL PAGE
+   ============================================================ */
+.skill-page {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.sk-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.sk-nav-back {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  transition: color var(--dur-fast);
+}
+
+.sk-nav-back:hover {
+  color: var(--skill-accent, var(--accent));
+}
+
+.sk-nav-domain {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--text-primary);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sk-nav-ext {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+
+.sk-nav-ext:hover {
+  color: var(--skill-accent, var(--accent));
+  border-bottom-color: var(--skill-accent, var(--accent));
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.sk-hero {
+  min-height: 58vh;
+  display: flex;
+  align-items: center;
+  padding-top: 60px; /* nav height */
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Subtle accent glow in background */
+.sk-hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 160%;
+  background: radial-gradient(ellipse at center, var(--skill-accent-dim, rgba(208,202,194,0.04)) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Grid pattern (same as main site hero) */
+.sk-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.sk-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 64px 40px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Hero left */
+.sk-hero-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  color: var(--skill-accent, var(--accent));
+  margin-bottom: 24px;
+}
+
+.sk-hero-icon {
+  font-size: 4rem;
+  line-height: 1;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 20px var(--skill-accent-dim, transparent));
+}
+
+.sk-hero-name {
+  font-family: var(--font-mono);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 0.9;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.sk-hero-subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.sk-hero-badges {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.sk-status-badge {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  color: var(--skill-accent, var(--accent));
+  padding: 4px 10px;
+  border: 1px solid var(--skill-accent, var(--accent));
+  opacity: 0.85;
+}
+
+.sk-since {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* Hero right — quick stats */
+.sk-quick-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sk-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-active);
+  border-top: 2px solid var(--skill-accent, var(--accent));
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.sk-stat-value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--skill-accent, var(--accent));
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.sk-stat-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   MAIN CONTENT WRAPPER
+   ============================================================ */
+.sk-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.sk-section {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.sk-section:last-child {
+  border-bottom: none;
+}
+
+.sk-section--full {
+  width: 100%;
+}
+
+.sk-section-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--skill-accent, var(--accent));
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Two-column rows */
+.sk-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.sk-row > .sk-section {
+  border-bottom: none;
+  padding-right: 40px;
+}
+
+.sk-row > .sk-section:last-child {
+  padding-right: 0;
+  padding-left: 40px;
+  border-left: 1px solid var(--border);
+}
+
+.sk-row--equal {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ============================================================
+   OVERVIEW
+   ============================================================ */
+.sk-description {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 760px;
+}
+
+/* ============================================================
+   LIVE DATA
+   ============================================================ */
+.sk-live-loading {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  padding: 16px 0;
+}
+
+/* ELO grid */
+.sk-elo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sk-elo-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--skill-accent, var(--accent));
+  padding: 16px 12px;
+  text-align: center;
+}
+
+.sk-elo-value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--skill-accent, var(--accent));
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.sk-elo-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+/* GitHub stats */
+.sk-github-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sk-github-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--skill-accent, var(--accent));
+  padding: 16px 12px;
+  text-align: center;
+}
+
+.sk-github-value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--skill-accent, var(--accent));
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.sk-github-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.sk-live-source {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   METRICS GRID
+   ============================================================ */
+.sk-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.sk-metric {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 16px 12px;
+}
+
+.sk-metric-value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--skill-accent, var(--accent));
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+
+.sk-metric-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.sk-metric-note {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   RATING CHART
+   ============================================================ */
+.sk-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 640px;
+}
+
+.sk-chart-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 60px;
+  gap: 16px;
+  align-items: center;
+}
+
+.sk-chart-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.sk-chart-bar-wrap {
+  height: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.sk-chart-bar-fill {
+  height: 100%;
+  background: var(--skill-accent, var(--accent));
+  opacity: 0.7;
+  transform-origin: left;
+  animation: bar-grow 0.6s var(--ease-out) forwards;
+}
+
+@keyframes bar-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.sk-chart-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--skill-accent, var(--accent));
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   ACHIEVEMENT LOG
+   ============================================================ */
+.sk-achievement-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Vertical line */
+.sk-achievement-list::before {
+  content: '';
+  position: absolute;
+  left: 100px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.sk-achievement-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 0;
+  padding: 14px 0;
+  position: relative;
+}
+
+.sk-achievement-item:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
+/* Dot on the timeline line */
+.sk-achievement-item::after {
+  content: '';
+  position: absolute;
+  left: 96px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--skill-accent, var(--accent));
+  z-index: 1;
+}
+
+.sk-achievement-date {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--skill-accent, var(--accent));
+  letter-spacing: 0.04em;
+  padding-right: 24px;
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+}
+
+.sk-achievement-body {
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+
+.sk-achievement-text {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.sk-achievement-type {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sk-type--milestone   { color: var(--skill-accent, var(--accent)); }
+.sk-type--achievement { color: #6ab04c; }
+.sk-type--update      { color: var(--text-muted); }
+
+/* ============================================================
+   SESSIONS
+   ============================================================ */
+.sk-session-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.sk-session-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.sk-session-item:last-child {
+  border-bottom: none;
+}
+
+.sk-session-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sk-session-date {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--skill-accent, var(--accent));
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.sk-session-type {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+}
+
+.sk-session-duration {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin-left: auto;
+}
+
+.sk-session-detail {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.sk-session-result {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.sk-timeline-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.sk-timeline-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.sk-timeline-item:last-child {
+  border-bottom: none;
+}
+
+.sk-timeline-date {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--skill-accent, var(--accent));
+  letter-spacing: 0.04em;
+  min-width: 80px;
+  flex-shrink: 0;
+}
+
+.sk-timeline-event {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   SOCIAL POSTS GRID
+   ============================================================ */
+.sk-social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.sk-post-card {
+  aspect-ratio: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+  display: block;
+  transition:
+    border-color var(--dur-base),
+    transform    var(--dur-base);
+}
+
+.sk-post-card:hover {
+  border-color: var(--skill-accent, var(--accent));
+  transform: scale(1.015);
+}
+
+.sk-post-thumb {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-card-hover) 0%, var(--bg-secondary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  opacity: 0.4;
+}
+
+.sk-post-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  padding: 40px 14px 14px;
+}
+
+.sk-post-caption {
+  font-size: var(--text-xs);
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sk-post-date {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+}
+
+.sk-social-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+
+.sk-social-more:hover {
+  color: var(--skill-accent, var(--accent));
+  border-bottom-color: var(--skill-accent, var(--accent));
+}
+
+/* ============================================================
+   PROOF LINKS
+   ============================================================ */
+.sk-proof-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sk-proof-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  transition: color var(--dur-fast);
+}
+
+.sk-proof-link:last-child {
+  border-bottom: none;
+}
+
+.sk-proof-link:hover {
+  color: var(--text-primary);
+}
+
+.sk-proof-arrow {
+  font-size: var(--text-lg);
+  color: var(--skill-accent, var(--accent));
+  transition: transform var(--dur-fast);
+}
+
+.sk-proof-link:hover .sk-proof-arrow {
+  transform: translateX(3px) translateY(-3px);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.sk-footer {
+  border-top: 1px solid var(--border);
+  padding: 40px;
+  background: var(--bg-secondary);
+}
+
+.sk-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.sk-footer-back {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  transition: color var(--dur-fast);
+}
+
+.sk-footer-back:hover {
+  color: var(--skill-accent, var(--accent));
+}
+
+.sk-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+}
+
+.sk-footer-name {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-primary);
+}
+
+.sk-footer-sep {
+  color: var(--text-muted);
+}
+
+.sk-footer-domain {
+  font-size: var(--text-sm);
+  color: var(--skill-accent, var(--accent));
+}
+
+.sk-footer-copy {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 960px) {
+  .sk-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 48px 24px;
+  }
+
+  .sk-quick-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .sk-row {
+    grid-template-columns: 1fr;
+    border-bottom: none;
+  }
+
+  .sk-row > .sk-section {
+    padding-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sk-row > .sk-section:last-child {
+    padding-left: 0;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .sk-achievement-list::before {
+    left: 88px;
+  }
+
+  .sk-achievement-item::after {
+    left: 84px;
+  }
+
+  .sk-achievement-item {
+    grid-template-columns: 88px 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .sk-nav {
+    padding: 12px 20px;
+  }
+
+  .sk-nav-domain {
+    display: none;
+  }
+
+  .sk-hero-inner {
+    padding: 36px 20px;
+  }
+
+  .sk-hero-name {
+    font-size: clamp(2.8rem, 14vw, 4rem);
+  }
+
+  .sk-hero-icon {
+    font-size: 3rem;
+  }
+
+  .sk-quick-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sk-main {
+    padding: 0 20px 60px;
+  }
+
+  .sk-footer {
+    padding: 28px 20px;
+  }
+
+  .sk-footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .sk-elo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sk-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sk-achievement-list::before {
+    display: none;
+  }
+
+  .sk-achievement-item::after {
+    display: none;
+  }
+
+  .sk-achievement-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .sk-achievement-date {
+    padding-right: 0;
+  }
+
+  .sk-achievement-body {
+    padding-left: 0;
+  }
+
+  .sk-social-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sk-chart-row {
+    grid-template-columns: 72px 1fr 52px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sk-hero {
+    min-height: auto;
+  }
+
+  .sk-hero-inner {
+    padding: 28px 16px;
+  }
+
+  .sk-hero-name {
+    font-size: clamp(2.4rem, 16vw, 3.2rem);
+  }
+
+  .sk-hero-icon {
+    font-size: 2.4rem;
+  }
+
+  .sk-quick-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .sk-stat-card {
+    padding: 14px 10px;
+  }
+
+  .sk-main {
+    padding: 0 16px 48px;
+  }
+
+  .sk-section {
+    padding: 32px 0;
+  }
+
+  .sk-section-title {
+    font-size: var(--text-xs);
+    margin-bottom: 20px;
+  }
+
+  /* nav: hide external link on tiny screens */
+  .sk-nav-ext {
+    display: none;
+  }
+
+  /* chart — tighter */
+  .sk-chart-row {
+    grid-template-columns: 64px 1fr 48px;
+    gap: 8px;
+  }
+
+  /* metrics 2-col */
+  .sk-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* elo/github grids */
+  .sk-elo-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sk-github-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  /* social posts 1-col on very small */
+  .sk-social-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .sk-chart-bar-fill {
+    animation: none;
+    transform: none;
+  }
+}
